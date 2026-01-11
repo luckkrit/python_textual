@@ -1,18 +1,19 @@
-from os import system
-from textual import on
 from textual.app import App, ComposeResult
-from textual.widgets import Button
+from textual.widgets import Label,Button
 
-class TextEditorApp(App[None]):
+class LanguageApp(App[None]):
     
     def compose(self)->ComposeResult:
-        yield Button("Open Nano", id="nano")
+        yield Label("What is your favorite language?")
+        yield Button("Python", id="python")
+        yield Button("PHP", id="php")
+        yield Button("Javascript", id="javascript")
     
-    @on(Button.Pressed, "#nano")
-    def run_nano(self)->None:
-        with self.suspend():
-            system("nano")
+    def on_button_pressed(self, event: Button.Pressed)->None:
+        self.exit(event.button.id)
+    
 
 if __name__ == "__main__":
-    app = TextEditorApp()
-    app.run()
+    app = LanguageApp()
+    return_code = app.run()
+    print(f"Your favourite language is: {return_code}")
