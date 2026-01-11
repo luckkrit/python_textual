@@ -1,7 +1,7 @@
 from textual.app import App, ComposeResult
 from textual.widgets import Label,Button
 
-class LanguageApp(App[None]):
+class LanguageApp(App[str]):
     
     def compose(self)->ComposeResult:
         yield Label("What is your favorite language?")
