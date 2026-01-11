@@ -1,8 +1,13 @@
-from textual.app import App
+from textual.app import App, ComposeResult
+from textual.widgets import Button
 
-class SimpleApp(App):
-    pass
+class WelcomeButton(App):
+    def compose(self)-> ComposeResult:
+        yield Button("Exit")
+    
+    def on_button_pressed(self)->None:
+        self.exit()
 
 if __name__ == "__main__":
-    app = SimpleApp()
+    app = WelcomeButton()
     app.run()
